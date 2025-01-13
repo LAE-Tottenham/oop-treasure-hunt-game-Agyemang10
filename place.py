@@ -1,24 +1,39 @@
 class Place():
     def __init__(self, given_name, given_size, locked=False):
-        # locked=False means that the locked parameter will be False by default if not provided.
         self.name = given_name
         self.size = given_size
         self.locked = locked
         self.next_places = []
         self.items = []
-        # add more atributes as needed
+        self.enemies = []
 
     def add_next_place(self, place_instance):
         self.next_places.append(place_instance)
 
     def add_item(self, item_instance):
-        # add code here
-        pass
+        self.items.append(item_instance)
+
+    def add_enemy(self, enemy_instance):
+        self.enemies.append(enemy_instance)
+
+    def show_items(self):
+        if self.items:
+            print("You see the following items:")
+            for item in self.items:
+                print(f"- {item.name}")
+        else:
+            print("No items here.\n")
+
+    def show_enemies(self):
+        if self.enemies:
+            print("You encounter the following enemies:")
+            for enemy in self.enemies:
+                print(f"- {enemy.name} (Health: {enemy.health}, Strength: {enemy.strength})")
+        else:
+            print("No enemies here.\n")
 
     def show_next_places(self):
         print("The possible places you can go to are: ")
         for place in self.next_places:
-            # remember that next_places is a list of Place instances hence why we can use place.name
-            print(place.name)
+            print(f"- {place.name} {'(Locked)' if place.locked else ''}")
 
-    # add more methods as needed
